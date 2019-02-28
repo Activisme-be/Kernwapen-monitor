@@ -5,20 +5,20 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreatePostalsTable
+ * Class CreateProvincesTable
  */
-class CreatePostalsTable extends Migration
+class CreateProvincesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('postals', function (Blueprint $table): void {
+        Schema::create('provinces', function (Blueprint $table): void {
             $table->increments('id');
-            $table->integer('code')->unique();
+            $table->string('naam');
             $table->timestamps();
         });
     }
@@ -28,8 +28,8 @@ class CreatePostalsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('postals');
+        Schema::dropIfExists('provinces');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\City;
 use App\Models\Postal;
+use App\Models\Province;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
@@ -27,10 +28,12 @@ class CityImport implements ToModel, WithHeadingRow, WithBatchInserts, WithProgr
      */
     public function model(array $row): void
     {
-        $postal = Postal::firstOrCreate(['code' => $row['postal']]);
-        $city   = City::firstOrCreate(['naam' => $row['name'], 'lat' => $row['lat'], 'lng' => $row['lng']]);
+        $postal   = Postal::firstOrCreate(['code' => $row['postal']]);
+        $city     = City::firstOrCreate(['naam' => $row['name'], 'lat' => $row['lat'], 'lng' => $row['lng']]);
+        $province = Province::firstOrCreate(['naam' => $row['province']]);
     
         $city->postal()->associate($postal)->save();
+        $city->province()->associate($province)->save();
     }
 
     /**
@@ -40,7 +43,7 @@ class CityImport implements ToModel, WithHeadingRow, WithBatchInserts, WithProgr
      */
     public function batchSize(): int
     {
-        return 50;
+        return 25;
     }
 
     /**
@@ -50,6 +53,6 @@ class CityImport implements ToModel, WithHeadingRow, WithBatchInserts, WithProgr
      */
     public function chunkSize(): int
     {
-        return 50;
+        return 25;
     }
 }

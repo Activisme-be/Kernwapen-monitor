@@ -28,4 +28,14 @@ class City extends Model
     {
         return $this->belongsTo(Postal::class)->withDefault(['code' => 0000]);
     }
+
+    /**
+     * Data relation for setting/getting the province from the city.
+     *
+     * @return BelongsTo
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class)->withDefault(['name' => 'None']);
+    }
 }

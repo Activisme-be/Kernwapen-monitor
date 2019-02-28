@@ -19,6 +19,7 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table): void {
             $table->increments('id');
             $table->unsignedInteger('postal_id')->nullable()->index();
+            $table->unsignedInteger('province_id')->nullable()->index();
             $table->string('naam'); 
             $table->string('lat'); 
             $table->string('lng'); 
@@ -26,6 +27,7 @@ class CreateCitiesTable extends Migration
 
             // Foreign keys 
             $table->foreign('postal_id')->references('id')->on('postals')->onDelete('set null');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('set null');
         });
     }
 
