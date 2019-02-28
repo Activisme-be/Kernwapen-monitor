@@ -21,7 +21,7 @@
             </div> {{-- /// End sidenav --}}
 
             <div class="col-9"> {{-- Content field --}}
-                <form method="POST" action="" class="card card-body">
+                <form method="POST" action="{{ route('monitor.show.update', $city) }}" class="card card-body">
                     @csrf               {{-- Form field protection --}}
                     @method('PATCH')    {{-- HTTP method spoofing --}}
                     @form($city)        {{-- Bind the city data to the form --}}
@@ -32,8 +32,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputName">Stadsnaam <span class="text-danger">*</span></label>
-                            <input id="inputName" type="text" @input('name') class="form-control @error('name', 'is-invalid')" placeholder="Naam van de stad">
-                            @error('name')
+                            <input id="inputName" type="text" @input('naam') class="form-control @error('naam', 'is-invalid')" placeholder="Naam van de stad">
+                            @error('naam')
                         </div>
 
                         <div class="form-group col-md-5">
