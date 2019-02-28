@@ -5,8 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class City 
+ * 
+ * @package App\Models
+ */
 class City extends Model
 {
+    /**
+     * Mass-assign fields for the database table. 
+     * 
+     * @return array
+     */
     protected $fillable = ['naam', 'lat', 'lng'];
 
     /**
