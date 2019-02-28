@@ -48,3 +48,4 @@ Route::get('/gebruikers/{filter?}', [IndexController::class, 'index'])->name('us
 
 // Monitor Routes
 Route::get('/monitor/{type?}', [DashboardController::class, 'dashboard'])->name('monitor.dashboard');
+Route::get('/monitor/stad/{city}', [DashboardController::class, 'show'])->name('monitor.show');

@@ -51,7 +51,7 @@
                                         
                                         <td> {{-- Options  --}}
                                             <span class="float-right">
-                                                <a href="" class="font-weight-bold text-decoration-none text-secondary mr-1">
+                                                <a href="{{ route('monitor.show', $city) }}" class="font-weight-bold text-decoration-none text-secondary mr-1">
                                                     <i class="fe fe-eye"></i>
                                                 </a>
                                             </span> 

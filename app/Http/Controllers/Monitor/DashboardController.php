@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Monitor;
 use App\Models\Postal;
 use App\Models\City;
 use App\Models\Signature;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Support\Renderable;
@@ -23,7 +24,7 @@ class DashboardController extends Controller
      */
     public function __construct() 
     {
-        $this->middleware(['auth', 'forbid-banned-user']);
+        $this->middleware(['auth', 'role:admin', 'forbid-banned-user']);
     }
 
     /**
@@ -42,5 +43,18 @@ class DashboardController extends Controller
             'cityCount'  => str_replace(',', '.', number_format($postal->count())),
             'signatures' => str_replace(',', '.', number_format($signatures->count()))
         ]);
+    }
+
+    /**
+     * Method for displaying all the information about the given city. 
+     * 
+     * @param  City     $city       The database model entity from the given city.
+     * @param  Province $provinces  The database model class for the provinces.
+     * @return Renderable
+     */
+    public function show(City $city, Province $provinces): Renderable 
+    {
+        $provinces = $provinces->all();
+        return view('monitor.show', compact('city', 'provinces'));
     }
 }
