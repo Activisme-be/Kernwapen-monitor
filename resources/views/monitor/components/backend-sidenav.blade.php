@@ -7,11 +7,11 @@
         <a href="{{ route('monitor.show', $city) }}" class="list-group-item list-group-item-action">
             <i class="fe fe-info mr-2 text-secondary"></i> Stadsinformatie
         </a>
-        <a href="" class="list-group-item list-group-item-action">
-            <i class="fe fe-edit mr-2 text-secondary"></i> Handtekeningen
+        <a href="{{ route('monitor.notes', $city) }}" class="list-group-item list-group-item-action">
+            <i class="fe fe-file-text mr-2 text-secondary"></i> Notities
         </a>
         <a href="" class="list-group-item list-group-item-action">
-            <i class="fe fe-file-text mr-2 text-secondary"></i> Notities
+            <i class="fe fe-edit mr-2 text-secondary"></i> Handtekeningen
         </a>
     </div>
 </div> {{-- /// End sidebar --}}

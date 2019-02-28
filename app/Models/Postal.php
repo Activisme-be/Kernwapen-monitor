@@ -28,4 +28,14 @@ class Postal extends Model
     {
         return $this->hasMany(Signature::class);
     }
+
+    /**
+     * Data relation for the notes taht are attached to the postal code. 
+     * 
+     * @return HasMany
+     */
+    public function notes(): HasMany 
+    {
+        return $this->hasMany(Notes::class);
+    }
 }

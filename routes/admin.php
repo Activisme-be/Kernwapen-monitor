@@ -6,6 +6,7 @@ use App\Http\Controllers\Users\AccountController;
 use App\Http\Controllers\Users\IndexController;
 use App\Http\Controllers\Users\LockController;
 use App\Http\Controllers\Monitor\DashboardController;
+use App\Http\Controllers\Monitor\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,7 @@ Route::get('/gebruikers/{filter?}', [IndexController::class, 'index'])->name('us
 Route::get('/monitor/{type?}', [DashboardController::class, 'dashboard'])->name('monitor.dashboard');
 Route::get('/monitor/stad/{city}', [DashboardController::class, 'show'])->name('monitor.show');
 Route::patch('/monitor/stad/{city}', [DashboardController::class, 'update'])->name('monitor.show.update');
+
+// City Note Routes 
+Route::get('/monitor/notities/{city}', [NoteController::class, 'index'])->name('monitor.notes');
+Route::get('/monitor/notities/{city}/nieuws', [NoteController::class, 'create'])->name('monitor.notes.create');

@@ -8,7 +8,7 @@
 
             <div class="page-options d-flex">
                 <a href="{{ route('monitor.dashboard') }}" class="btn btn-secondary">
-                    <i class="fe fe-list mr-1"></i> Overzicht
+                    <i class="fe fe-list mr-1"></i> Stads overzicht
                 </a>
             </div>
         </div>
