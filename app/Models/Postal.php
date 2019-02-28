@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,4 +18,14 @@ class Postal extends Model
      * @return array 
      */
     protected $fillable = ['code'];
+
+    /**
+     * Data relation for all the signatures that are attached to the postal code. 
+     * 
+     * @return HasMany
+     */
+    public function signatures(): HasMany
+    {
+        return $this->hasMany(Signature::class);
+    }
 }
