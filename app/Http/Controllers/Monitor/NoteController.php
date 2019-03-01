@@ -41,6 +41,6 @@ class NoteController extends Controller
      */
     public function create(City $city): Renderable 
     {
-        return view('monitor.notes.create');
+        return view('monitor.notes.create', compact('city'));
     }
 }
