@@ -17,10 +17,15 @@ class CreateNotesTable extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table): void {
-            $table->unsignedInteger('postal_id')->index();
+            $table->increments('id');
+            $table->unsignedInteger('postal_id')->nullable()->index();
+            $table->unsignedInteger('author_id')->nullable()->index();
+            $table->string('titel'); 
+            $table->string('beschrijving');
             $table->timestamps();
 
             // Foreign keys 
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('postal_id')->references('id')->on('postals')->onDelete('cascade');
         });
     }
