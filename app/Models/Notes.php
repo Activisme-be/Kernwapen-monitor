@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\User;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\User;
 
 /**
  * Class Notes 
@@ -24,6 +24,8 @@ class Notes extends Model
      */
     protected $fillable = ['titel', 'beschrijving'];
 
+    protected $dates = ["created_at"];
+
     /**
      * Data relation for the author from the note. 
      * 
@@ -31,7 +33,7 @@ class Notes extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class)->withDefault(['naam', 'Onbekende gebruiker']);
+        return $this->belongsTo(User::class)->withDefault(['voornaam' => 'Onbekende', 'achternaam' => 'gebruiker']);
     }
 
     /**
@@ -42,6 +44,16 @@ class Notes extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * Data relation for the attached city. 
+     * 
+     * @return BelongsTo
+     */
+    public function postal(): BelongsTo
+    {
+        return $this->belongsTo(Postal::class, 'postal_id');
     }
 
     /**

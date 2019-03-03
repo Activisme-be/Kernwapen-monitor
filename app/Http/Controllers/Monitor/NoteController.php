@@ -62,9 +62,15 @@ class NoteController extends Controller
         return view('monitor.notes.index', compact('city', 'notes')); 
     }
 
+    /**
+     * Method for displaying a note in the application. 
+     * 
+     * @param  Notes $note The database entity from the given note. 
+     * @return Renderable 
+     */
     public function show(Notes $note): Renderable
     {
-        
+        return view('monitor.notes.show', compact('note'));
     } 
 
     /**
@@ -109,9 +115,10 @@ class NoteController extends Controller
         $this->authorize('delete', $note); // Check if the user to permitted. 
 
         if ($note->delete()) {
+            flash('De notitie is verwijderd uit de monitor.')->success();
             auth()->user()->logActivity($note, 'Notities', "Heeft een notitie verwijderd in de applicatie.");
         }
 
-        return back(); // HTTP 302: Redirect user to the previous page. 
+        return redirect()->route('monitor.dashboard'); // HTTP 302: Redirect user to the previous page. 
     }
 }

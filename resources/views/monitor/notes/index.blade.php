@@ -59,11 +59,11 @@
 
                                         <td> {{-- Option column --}}
                                             <span class="float-right">
-                                                <a class="text-decoration-none text-secondary mr-1" href="">
+                                                <a class="text-decoration-none text-secondary mr-1" href="{{ route('note.show', $note) }}">
                                                     <i class="fe fe-eye"></i>
                                                 </a>
 
-                                                <a class="text-decoration-none @if ($currentUser->cannot('update', $note)) disabled @endif text-secondary mr-1" href="">
+                                                <a class="text-decoration-none @if ($currentUser->cannot('update', $note)) disabled @endif text-secondary mr-1">
                                                     <i class="fe fe-edit-2"></i>
                                                 </a>
 
