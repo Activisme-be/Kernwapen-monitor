@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <form method="GET" action="" class="w-100 ml-2">
+                <form method="GET" action="{{ route('monitor.notes.search', $city) }}" class="w-100 ml-2">
                     <input type="text" class="form-control" @input('term') placeholder="Zoek notitie">
                 </form>
             </div>
@@ -76,7 +76,7 @@
                                 @empty {{-- There are no notes for the city in the application --}}
                                     <tr>
                                         <td colspan="6">
-                                            <span class="text-secondary">Er zijn momenteel geen notities voor {{ $city->naam }}</span>
+                                            <span class="text-secondary">Er zijn momenteel geen notities voor {{ $city->naam }} gevonden.</span>
                                         </td>
                                     </tr>
                                 @endforelse {{-- /// END loop --}} 

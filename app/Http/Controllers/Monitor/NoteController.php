@@ -46,6 +46,23 @@ class NoteController extends Controller
     }
 
     /**
+     * Method for search specific notes that are attached to the city.
+     * 
+     * @param  Request  $request    The form request information instance
+     * @param  City     $city       Database entity from the given city. 
+     * @return Renderable 
+     */
+    public function search(Request $request, City $city): Renderable
+    {
+        $notes = Notes::where('titel', 'LIKE', "%{$request->term}%")
+            ->orWhere('beschrijving', 'LIKE', "%{$request->term}%")
+            ->wherePostalId($city->id)
+            ->simplePaginate();
+
+        return view('monitor.notes.index', compact('city', 'notes')); 
+    }
+
+    /**
      * Display view for creating a new note in the application.
      *
      * @param  City $city The database entity from the given city.

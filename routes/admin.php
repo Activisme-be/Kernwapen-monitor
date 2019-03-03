@@ -53,6 +53,7 @@ Route::get('/monitor/stad/{city}', [DashboardController::class, 'show'])->name('
 Route::patch('/monitor/stad/{city}', [DashboardController::class, 'update'])->name('monitor.show.update');
 
 // City Note Routes 
+Route::get('/notities/zoek/{city}/{term?}', [NoteController::class, 'search'])->name('monitor.notes.search');;
 Route::get('/monitor/notities/{note}/verwijder', [NoteController::class, 'destroy'])->name('monitor.notes.delete');
 Route::get('/monitor/notities/{city}/nieuw', [NoteController::class, 'create'])->name('monitor.notes.create');
 Route::post('/monitor/notities/{city}/nieuw', [NoteController::class, 'store'])->name('monitor.notes.store');
