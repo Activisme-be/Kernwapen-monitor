@@ -63,11 +63,11 @@
                                                     <i class="fe fe-eye"></i>
                                                 </a>
 
-                                                <a class="text-deconration-none @if ($currentUser->cannot('edit', $note)) disabled @endif text-secondary mr-1" href="">
+                                                <a class="text-decoration-none @if ($currentUser->cannot('update', $note)) disabled @endif text-secondary mr-1" href="">
                                                     <i class="fe fe-edit-2"></i>
                                                 </a>
 
-                                                <a class="text-decoration-none @if ($currentUser->cannot('delete', $note)) disabled @endif text-danger mr-1" href="">
+                                                <a class="text-decoration-none @if ($currentUser->cannot('delete', $note)) disabled @endif text-danger mr-1" href="{{ route('monitor.notes.delete', $note) }}">
                                                     <i class="fe fe-x-circle"></i>
                                                 </a>
                                             </span>

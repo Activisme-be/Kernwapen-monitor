@@ -54,5 +54,6 @@ Route::patch('/monitor/stad/{city}', [DashboardController::class, 'update'])->na
 
 // City Note Routes 
 Route::get('/monitor/notities/{city}', [NoteController::class, 'index'])->name('monitor.notes');
+Route::get('/monitor/notities/{note}/verwijder', [NoteController::class, 'destroy'])->name('monitor.notes.delete');
 Route::get('/monitor/notities/{city}/nieuw', [NoteController::class, 'create'])->name('monitor.notes.create');
 Route::post('/monitor/notities/{city}/nieuw', [NoteController::class, 'store'])->name('monitor.notes.store');

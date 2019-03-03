@@ -69,4 +69,21 @@ class NoteController extends Controller
 
         return redirect()->route('monitor.notes', $city);
     }
+
+    /**
+     * Method for deleting a note in the application. 
+     * 
+     * @param  Notes $note The database entity from the given note.
+     * @return RedirectResponse
+     */
+    public function destroy(Notes $note): RedirectResponse
+    {
+        $this->authorize('delete', $note); // Check if the user to permitted. 
+
+        if ($note->delete()) {
+            auth()->user()->logActivity($note, 'Notities', "Heeft een notitie verwijderd in de applicatie.");
+        }
+
+        return back(); // HTTP 302: Redirect user to the previous page. 
+    }
 }
