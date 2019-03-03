@@ -30,13 +30,19 @@ class NoteController extends Controller
     /**
      * Display all the notes from the given city.
      *
-     * @param  City $city   The database entity from the given city
+     * @param  Request  $request    The form request instance that holds all the request information.
+     * @param  City     $city       The database entity from the given city
      * @return Renderable
      */
-    public function index(City $city): Renderable
+    public function index(Request $request, City $city): Renderable
     {
-        $notes = $city->postal->notes()->simplePaginate();
-        return view('monitor.notes.index', compact('city', 'notes'));
+        $notes = $city->postal->notes(); 
+
+        switch ($request->filter) {
+            case 'gebruiker': $notes = $notes->whereAuthorId(auth()->user()->id);
+        }
+
+        return view('monitor.notes.index', ['city' => $city, 'notes' => $notes->simplePaginate()]);
     }
 
     /**

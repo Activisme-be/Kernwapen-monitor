@@ -18,7 +18,7 @@
 
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('monitor.notes', $city) }}">Alle notities</a>
-                        <a class="dropdown-item" href="">Mijn notities</a>
+                        <a class="dropdown-item" href="{{ route('monitor.notes', ['city' => $city, 'filter' => 'gebruiker']) }}">Mijn notities</a>
                     </div>
                 </div>
 
