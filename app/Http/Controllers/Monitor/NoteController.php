@@ -62,6 +62,11 @@ class NoteController extends Controller
         return view('monitor.notes.index', compact('city', 'notes')); 
     }
 
+    public function show(Notes $note): Renderable
+    {
+        
+    } 
+
     /**
      * Display view for creating a new note in the application.
      *

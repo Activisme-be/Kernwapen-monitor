@@ -20,6 +20,7 @@ class CreateNotesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('postal_id')->nullable()->index();
             $table->unsignedInteger('author_id')->nullable()->index();
+            $table->string('slug')->unique();
             $table->string('titel'); 
             $table->string('beschrijving');
             $table->timestamps();
