@@ -52,6 +52,27 @@
                             </thead>
                             <tbody>
                                 @forelse ($notes as $note) {{-- Loop trough the notes --}}
+                                    <tr>
+                                        <td>{{ $note->author->name }}</td>
+                                        <td>{{ ucfirst($note->titel) }}</td>
+                                        <td>{{ $note->created_at->diffForHumans() }}</td>
+
+                                        <td> {{-- Option column --}}
+                                            <span class="float-right">
+                                                <a class="text-decoration-none text-secondary mr-1" href="">
+                                                    <i class="fe fe-eye"></i>
+                                                </a>
+
+                                                <a class="text-deconration-none @if ($currentUser->cannot('edit', $note)) disabled @endif text-secondary mr-1" href="">
+                                                    <i class="fe fe-edit-2"></i>
+                                                </a>
+
+                                                <a class="text-decoration-none @if ($currentUser->cannot('delete', $note)) disabled @endif text-danger mr-1" href="">
+                                                    <i class="fe fe-x-circle"></i>
+                                                </a>
+                                            </span>
+                                        </td> {{-- /// Option column --}}
+                                    </tr>
                                 @empty {{-- There are no notes for the city in the application --}}
                                     <tr>
                                         <td colspan="6">
