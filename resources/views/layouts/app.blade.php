@@ -77,7 +77,7 @@
                         <i class="fe fe-users mr-1 text-secondary"></i> Gebruikers
                     </a>
 
-                    <a class="nav-link {{ active('monitor.*') }}" href="{{ route('monitor.dashboard') }}">
+                    <a class="nav-link {{ active(['monitor.*', 'note.*']) }}" href="{{ route('monitor.dashboard') }}">
                         <i class="fe fe-list mr-1 text-secondary"></i> Monitor
                     </a>
                 @endif

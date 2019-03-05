@@ -20,6 +20,7 @@ class CreateNotesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('postal_id')->nullable()->index();
             $table->unsignedInteger('author_id')->nullable()->index();
+            $table->unsignedInteger('city_id')->nullable()->index();
             $table->string('slug')->unique();
             $table->string('titel'); 
             $table->string('beschrijving');
@@ -27,6 +28,7 @@ class CreateNotesTable extends Migration
 
             // Foreign keys 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('postal_id')->references('id')->on('postals')->onDelete('cascade');
         });
     }

@@ -37,6 +37,26 @@ class Notes extends Model
     }
 
     /**
+     * Data relation for the attached city. 
+     * 
+     * @return BelongsTo
+     */
+    public function postal(): BelongsTo
+    {
+        return $this->belongsTo(Postal::class);
+    }
+
+    /**
+     * Data relation for the attached city. 
+     * 
+     * @return BelongsTo 
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    /**
      * Get the route key for the model.
      *
      * @return string
@@ -44,16 +64,6 @@ class Notes extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
-    }
-
-    /**
-     * Data relation for the attached city. 
-     * 
-     * @return BelongsTo
-     */
-    public function postal(): BelongsTo
-    {
-        return $this->belongsTo(Postal::class, 'postal_id');
     }
 
     /**

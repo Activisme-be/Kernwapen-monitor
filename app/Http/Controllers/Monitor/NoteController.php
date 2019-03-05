@@ -97,11 +97,12 @@ class NoteController extends Controller
         $authUser = auth()->user();
 
         if ($city->postal->notes()->save($note)) {
+            $note->city()->associate($city)->save();       // Associate a city the note. 
             $note->author()->associate($authUser)->save(); // Associate the authenticated user to the note. 
             $authUser->logActivity($note, 'Notities', "Heeft een notitie toegvoegd voor de stad {$city->naam}.");
         }
 
-        return redirect()->route('monitor.notes', $city);
+        return redirect()->route('note.show', $note);
     }
 
     /**
@@ -119,6 +120,6 @@ class NoteController extends Controller
             auth()->user()->logActivity($note, 'Notities', "Heeft een notitie verwijderd in de applicatie.");
         }
 
-        return redirect()->route('monitor.dashboard'); // HTTP 302: Redirect user to the previous page. 
+        return redirect()->route('monitor.notes', $city); // HTTP 302: Redirect user to the previous page. 
     }
 }
