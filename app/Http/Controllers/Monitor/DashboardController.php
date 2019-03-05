@@ -59,7 +59,7 @@ class DashboardController extends Controller
     public function dashboardSearch(Request $request, Signature $signatures, City $cities): Renderable
     {
         return view('monitor.dashboard', [
-            'cities'     => $cities->getSearchResults($request->term),
+            'cities'     => $cities->getSearchResults($request->term)->simplePaginate(),
             'cityCount'  => str_replace(',', '.', number_format($cities->count())),
             'signatures' => str_replace(',', '.', number_format($signatures->count()))
         ]);

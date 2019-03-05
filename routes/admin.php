@@ -52,6 +52,7 @@ Route::get('/notities/zoek/{city}/{term?}', [NoteController::class, 'search'])->
 Route::get('/notities/{note}', [NoteController::class, 'show'])->name('note.show');
 
 // Monitor Routes
+Route::get('/monitor', [DashboardController::class, 'dashboardSearch'])->name('monitor.search');
 Route::get('/monitor/{type?}', [DashboardController::class, 'dashboard'])->name('monitor.dashboard');
 Route::get('/monitor/stad/{city}', [DashboardController::class, 'show'])->name('monitor.show');
 Route::patch('/monitor/stad/{city}', [DashboardController::class, 'update'])->name('monitor.show.update');

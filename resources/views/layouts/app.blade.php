@@ -81,6 +81,18 @@
                         <i class="fe fe-list mr-1 text-secondary"></i> Monitor
                     </a>
                 @endif
+
+                <a class="nav-link" href="">
+                    <i class="fe fe-file-text mr-1"></i> Petitie
+                </a>
+
+                <a class="nav-link" href="">
+                    <i class="fe mr-1 fe-book-open"></i> Nieuws
+                </a>
+
+                <a class="nav-link" href="">
+                    <i class="fe fe-list mr-1"></i> Ondersteuning
+                </a>
             </nav>
         </div>
 

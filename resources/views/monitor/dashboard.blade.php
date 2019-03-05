@@ -4,7 +4,13 @@
     <div class="container-fluid py-3">
         <div class="page-header">
             <h1 class="page-title">Steden monitor</h1>
-            <div class="page-subtitle">Informatie overzicht</div>
+            <div class="page-subtitle">
+                @if (request()->has('term'))
+                    Zoekresultaten voor <strong>{{ request()->get('term') }}</strong>
+                @else
+                    Informatie overzicht
+                @endif
+            </div>
 
             <div class="page-options d-flex">
                 <div class="btn-group">
@@ -17,7 +23,7 @@
                     </div>
                 </div>
 
-                <form method="GET" action="" class="w-100 ml-2">
+                <form method="GET" action="{{ route('monitor.search') }}" class="w-100 ml-2">
                     <input type="text" class="form-control" @input('term') placeholder="Zoeken">
                 </form>
             </div>
@@ -58,6 +64,11 @@
                                         </td> {{-- /// END options --}}
                                     </tr>
                                 @empty {{-- There are no cities found in the application --}}
+                                    <tr>
+                                        <td colspan="5">
+                                            <span class="text-secondary">Er zijn geen steden gevonden in de monitor.</span>
+                                        </td>
+                                    </tr>
                                 @endforelse {{-- /// END city loop --}}
                             </tbody>
                         </table>
