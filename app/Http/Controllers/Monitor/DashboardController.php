@@ -31,18 +31,36 @@ class DashboardController extends Controller
 
     /**
      * Method for the monitor backend view. 
-     * 
+     *
+     * @todo Register route
+     *
      * @param  Request   $request       The form request class that holds all the request information
      * @param  City      $cities        The database model class for the cities
-     * @param  Postal    $postal        The database model class for the postal codes. 
      * @param  Signature $signatures    The database model class for the petition signatures.
      * @return Renderable 
      */
-    public function dashboard(Request $request, City $cities, Postal $postal, Signature $signatures): Renderable 
+    public function dashboard(Request $request, City $cities, Signature $signatures): Renderable
     {
         return view('monitor.dashboard', [
             'cities'     => $cities->simplePaginate(), 
-            'cityCount'  => str_replace(',', '.', number_format($postal->count())),
+            'cityCount'  => str_replace(',', '.', number_format($cities->count())),
+            'signatures' => str_replace(',', '.', number_format($signatures->count()))
+        ]);
+    }
+
+    /**
+     * Method for search trough the cities in the monitor.
+     *
+     * @param  Request   $request       The form request class that collects all the request information.
+     * @param  Signature $signatures    The database model class for the petition signatures
+     * @param  City      $cities        The database model class for the cities.
+     * @return Renderable
+     */
+    public function dashboardSearch(Request $request, Signature $signatures, City $cities): Renderable
+    {
+        return view('monitor.dashboard', [
+            'cities'     => $cities->getSearchResults($request->term),
+            'cityCount'  => str_replace(',', '.', number_format($cities->count())),
             'signatures' => str_replace(',', '.', number_format($signatures->count()))
         ]);
     }

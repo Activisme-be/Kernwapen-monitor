@@ -34,9 +34,22 @@
                         <h6 class="border-bottom border-gray pb-2 mb-2">[Notitie]: {{ ucfirst($note->titel) }}</h6>
                         <small class="text-secondary">Notitie toegevoegd door {{ $note->author->name }} op {{ $note->created_at->format('d/m/Y') }} onder de stad {{ $note->city->naam }}</small>
                 
-                        <p class="card-text mt-2">{{ ucfirst($note->beschrijving) }}</p>
+                        <p class="card-text mb-2 mt-2">{{ ucfirst($note->beschrijving) }}</p>
 
-                        @if () 
+                        @if ($currentUser->can('update', $note) || $currentUser->can('delete', $note))
+                            <hr class="mt-0">
+
+                            @if ($currentUser->can('update', $note)) {{-- User is permitted to update the note --}}
+                                <a href="" class="card-link text-decoration-none text-secondary">
+                                    <i class="fe fe-edit-2 mr-1"></i> Wijzig notitie
+                                </a>
+                            @endif
+
+                            @if ($currentUser->can('delete', $note)) {{-- User is permitted to delete the note --}}
+                                <a href="{{ route('monitor.notes.delete', $note)  }}" class="card-link text-decoration-none text-danger">
+                                    <i class="fe fe-trash-2 mr-1"></i> Verwijder notitie
+                                </a>
+                            @endif
                         @endif
                     </div>
                 </div>

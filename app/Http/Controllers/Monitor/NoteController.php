@@ -106,8 +106,10 @@ class NoteController extends Controller
     }
 
     /**
-     * Method for deleting a note in the application. 
-     * 
+     * Method for deleting a note in the application.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @param  Notes $note The database entity from the given note.
      * @return RedirectResponse
      */
@@ -120,6 +122,6 @@ class NoteController extends Controller
             auth()->user()->logActivity($note, 'Notities', "Heeft een notitie verwijderd in de applicatie.");
         }
 
-        return redirect()->route('monitor.notes', $city); // HTTP 302: Redirect user to the previous page. 
+        return redirect()->route('monitor.notes', $note->city); // HTTP 302: Redirect user to the previous page.
     }
 }
