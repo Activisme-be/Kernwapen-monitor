@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Articles\BackendController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Users\AccountController;
 use App\Http\Controllers\Users\IndexController;
@@ -46,6 +47,10 @@ Route::patch('/gebruikers/{user}', [IndexController::class, 'update'])->name('us
 Route::get('/gebruikers/nieuw', [IndexController::class, 'create'])->name('users.create');
 Route::post('/gebruikers/nieuw', [IndexController::class, 'store'])->name('users.store');
 Route::get('/gebruikers/{filter?}', [IndexController::class, 'index'])->name('users.index');
+
+// Article routes
+Route::get('/artikelen', [BackendController::class, 'index'])->name('articles.dashboard');
+Route::get('/artikelen/nieuw', [BackendController::class, 'create'])->name('articles.create');
 
 // City Note Routes 
 Route::get('/notities/zoek/{city}/{term?}', [NoteController::class, 'search'])->name('monitor.notes.search');

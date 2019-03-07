@@ -89,9 +89,11 @@
                         <i class="fe fe-file-text mr-1"></i> Petitie
                     </a>
 
-                    <a class="nav-link" href="">
-                        <i class="fe mr-1 fe-book-open"></i> Nieuws
-                    </a>
+                    @if ($currentUser->hasAnyRole(['admin', 'writer']))
+                        <a class="nav-link {{ active('articles.*') }}" href="{{ route('articles.dashboard') }}">
+                            <i class="fe mr-1 fe-book-open"></i> Nieuws
+                        </a>
+                    @endif
 
                     <a class="nav-link" href="">
                         <i class="fe fe-list mr-1"></i> Ondersteuning
