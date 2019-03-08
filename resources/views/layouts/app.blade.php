@@ -22,66 +22,94 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <img src="{{ asset('img/logo.png') }}" width="25" height="25" class="mr-2 rounded-circle d-inline-block align-top" alt="{{ config('app.name', 'Laravel') }}">
-            <a class="navbar-brand mr-auto mr-lg-0" href="#">{{ config('app.name', 'Laravel') }}</a>
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="container-fluid">
+                <img src="{{ asset('img/logo.png') }}" width="25" height="25" class="mr-2 rounded-circle d-inline-block align-top" alt="{{ config('app.name', 'Laravel') }}">
+                <a class="navbar-brand mr-auto mr-lg-0" href="{{ route('welcome') }}">{{ config('app.name', 'Laravel') }}</a>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    &nbsp;
-                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ active('notifications.*') }}" href="{{ route('notifications.index') }}">
-                            <i class="fe fe-bell mr-1"></i> {{ $currentUser->unreadNotifications()->count() }}
-                        </a>
-                    </li>
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        &nbsp;
+                    </ul>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ $currentUser->name }}
-                        </a>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {{ active('notifications.*') }}" href="{{ route('notifications.index') }}">
+                                <i class="fe fe-bell mr-1"></i> {{ $currentUser->unreadNotifications()->count() }}
+                            </a>
+                        </li>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
-                            <a class="dropdown-item" href=" {{ route('account.settings') }}">
-                                <i class="fe fe-sliders mr-1 text-secondary"></i> Instellingen
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ $currentUser->name }}
                             </a>
 
-                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
+                                <a class="dropdown-item" href=" {{ route('account.settings') }}">
+                                    <i class="fe fe-sliders mr-1 text-secondary"></i> Instellingen
+                                </a>
 
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fe text-danger mr-1 fe-power"></i> Afmelden
-                            </a>
+                                <div class="dropdown-divider"></div>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf {{-- Form field protection --}}
-                            </form>
-                        </div>
-                    </li>
-                </ul>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fe text-danger mr-1 fe-power"></i> Afmelden
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf {{-- Form field protection --}}
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
         <div class="nav-scroller bg-white shadow-sm">
-            <nav class="nav nav-underline">
-                <a class="nav-link {{ active('home') }}" href="{{ route('home') }}">
-                    <i class="fe fe-home mr-1 text-secondary"></i> Dashboard
-                </a>
-
-                @if ($currentUser->hasRole('admin'))
-                    <a class="nav-link {{ active('users.*') }}" href="{{ route('users.index') }}">
-                        <i class="fe fe-users mr-1 text-secondary"></i> Gebruikers
+            <div class="container-fluid">
+                <nav class="nav nav-underline">
+                    <a class="nav-link {{ active('home') }}" href="{{ route('home') }}">
+                        <i class="fe fe-home mr-1 text-secondary"></i> Dashboard
                     </a>
-                @endif
-            </nav>
+
+                    @if ($currentUser->hasRole('admin'))
+                        <a class="nav-link {{ active('users.*') }}" href="{{ route('users.index') }}">
+                            <i class="fe fe-users mr-1 text-secondary"></i> Gebruikers
+                        </a>
+
+                        <a class="nav-link {{ active(['monitor.*', 'note.*']) }}" href="{{ route('monitor.dashboard') }}">
+                            <i class="fe fe-list mr-1 text-secondary"></i> Monitor
+                        </a>
+                    @endif
+
+                    <a class="nav-link" href="">
+                        <i class="fe fe-file-text mr-1"></i> Petitie
+                    </a>
+
+                    @if ($currentUser->hasAnyRole(['admin', 'writer']))
+                        <a class="nav-link {{ active('articles.*') }}" href="{{ route('articles.dashboard') }}">
+                            <i class="fe mr-1 fe-book-open"></i> Nieuws
+                        </a>
+                    @endif
+
+                    <a class="nav-link" href="">
+                        <i class="fe fe-list mr-1"></i> Ondersteuning
+                    </a>
+
+                    <a class="nav-link" href="">
+                        <i class="fe fe-calendar mr-1"></i> Kalender
+                    </a>
+                </nav>
+            </div>
         </div>
 
         <main role="main">
-            @yield('content')
+            <div class="container-fluid">
+                @yield('content')
+            </div>
         </main>
 
         <footer class="footer">

@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Policies\UserPolicy;
 use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\Notes;
+use App\Policies\NotesPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,17 +15,18 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [User::class => UserPolicy::class];
+    protected $policies = [
+        User::class => UserPolicy::class,
+        Notes::class => NotesPolicy::class,
+    ];
 
     /**
      * Register any authentication / authorization services.
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->registerPolicies();
-
-        //
     }
 }

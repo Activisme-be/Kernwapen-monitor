@@ -81,6 +81,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/html-element" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-activitylog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-sluggable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/seeders" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/string" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
