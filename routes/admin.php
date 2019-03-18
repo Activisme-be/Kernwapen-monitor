@@ -51,6 +51,8 @@ Route::get('/gebruikers/{filter?}', [IndexController::class, 'index'])->name('us
 
 // Category routes
 Route::get('/categorieen', [CategoryController::class, 'dashboard'])->name('categories.dashboard');
+Route::get('/categorieen/nieuw', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categorieen/nieuw', [CategoryController::class, 'store'])->name('categories.store');
 
 // Article routes
 Route::get('/artikelen', [BackendController::class, 'index'])->name('articles.dashboard');

@@ -7,7 +7,7 @@
             <div class="page-subtitle">Overzicht</div>
 
             <div class="page-options d-flex">
-                <a class="btn btn-secondary mr-2" href="">
+                <a class="btn btn-secondary mr-2" href="{{ route('categories.create') }}">
                     <i class="fe fe-plus"></i>
                 </a>
 
