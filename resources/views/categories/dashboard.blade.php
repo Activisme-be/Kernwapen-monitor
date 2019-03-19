@@ -40,6 +40,23 @@
                             </thead>
                             <tbody>
                                 @forelse ($categories as $category) {{-- Loop through the categories in the application --}}
+                                    <tr>
+                                        <td>{{ $category->author->name }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $category->created_at->format('d/m/Y H:i') }}</td> 
+
+                                        <td> {{-- Options --}}
+                                            <span class="float-right">
+                                                <a href="" class="text-decoration-none text-secondary mr-1">
+                                                    <i class="fe fe-eye"></i>
+                                                </a>
+
+                                                <a href="{{ route('categories.destroy', $category) }}" class="text-decoration-none text-danger">
+                                                    <i class="fe fe-x-circle"></i>
+                                                </a>
+                                            </span>
+                                        </td> {{-- /// Options --}}
+                                    </tr>
                                 @empty {{-- There are no categories found in the application --}}
                                     <tr>
                                         <td colspan="4">
