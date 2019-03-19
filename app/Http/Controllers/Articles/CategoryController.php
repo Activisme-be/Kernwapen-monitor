@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Tags\Tag;
+use App\Models\Tags;
 
 /**
  * Class CategoryController
@@ -28,10 +28,10 @@ class CategoryController extends Controller
     /**
      * Admin dashboard page for the news articles.
      *
-     * @param  Tag $categories The database model instance from the categories
+     * @param  Tags $categories The database model instance from the categories
      * @return Renderable
      */
-    public function dashboard(Tag $categories): Renderable
+    public function dashboard(Tags $categories): Renderable
     {
         return view('categories.dashboard', ['categories' => $categories->simplePaginate()]);
     }
@@ -55,15 +55,11 @@ class CategoryController extends Controller
     public function store(Request $input): RedirectResponse
     {
         // TODO: We need to look if it is needed for refactor this in Form Request class
-        $input->validate(['naam' => ['required', 'string', 'unique:categories,naam', 'max:191']]);
+        $input->validate(['naam' => ['required', 'string', 'unique:tags,name', 'max:191']]);
 
-        if ($category = Tag::findOrCreate($input->naam)) {
+        if ($category = Tags::findOrCreate($input->naam, 'news-category')) {
             // TODO: Implement activity log for the handling
-
             // TODO: Implement create observer for setting the author relation.
-            //       -> Database migration needs to be extended for this
-            //       -> Extend the spatie/laravel-tags model to our own model so we can register the author model. (BelongsTo)
-            //       -> The controller should use the application model not the package model.
             flash("De nieuws categorie is aangemaakt in de applicatie")->success();
         }
 
