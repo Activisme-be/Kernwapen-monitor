@@ -7,7 +7,7 @@
             <div class="page-subtitle">Artikel toevoegen</div>
 
             <div class="page-options d-flex">
-                <a class="btn btn-secondary" href="{{ route('categories.create') }}">
+                <a class="btn btn-secondary" href="{{ route('articles.dashboard') }}">
                     <i class="fe fe-book-open mr-2"></i> Overzicht
                 </a>
             </div>
@@ -25,7 +25,7 @@
                     <h6 class="border-bottom border-gray pb-1 mb-3">Nieuwsbericht toevoegen</h6>
 
                     @include ('flash::message') {{-- Flash session view partial --}}
-                    @csrf {{-- Form filed protection --}}
+                    @csrf {{-- Form field protection --}}
 
                     <div class="form-row">
                         <div class="form-group col-8">

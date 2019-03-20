@@ -49,7 +49,13 @@ class BackendController extends Controller
     }
 
     /**
+     * Method for storing a new article in the application. 
+     * 
      * @todo implement route (view, backend)
+     * 
+     * @param 
+     * @param 
+     * @return 
      */
     public function store(PostValidator $input, Article $article): RedirectResponse 
     {
