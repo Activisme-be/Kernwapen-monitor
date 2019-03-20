@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Articles\BackendController;
+use App\Http\Controllers\Articles\CategoryController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Users\AccountController;
 use App\Http\Controllers\Users\IndexController;
@@ -47,6 +48,9 @@ Route::patch('/gebruikers/{user}', [IndexController::class, 'update'])->name('us
 Route::get('/gebruikers/nieuw', [IndexController::class, 'create'])->name('users.create');
 Route::post('/gebruikers/nieuw', [IndexController::class, 'store'])->name('users.store');
 Route::get('/gebruikers/{filter?}', [IndexController::class, 'index'])->name('users.index');
+
+// Category routes
+Route::get('/categorieen', [CategoryController::class, 'dashboard'])->name('categories.dashboard');
 
 // Article routes
 Route::get('/artikelen', [BackendController::class, 'index'])->name('articles.dashboard');

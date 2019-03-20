@@ -8,7 +8,7 @@
             <i class="fe fe-book-open text-secondary mr-2"></i> Nieuwsberichten
         </a>
 
-        <a href="" class="list-group-item list-group-item-action">
+        <a href="{{ route('categories.dashboard') }}" class="list-group-item list-group-item-action">
             <i class="fe fe-tag text-secondary mr-2"></i> Categorieen
         </a>
     </div>

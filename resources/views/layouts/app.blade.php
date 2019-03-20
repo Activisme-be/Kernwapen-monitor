@@ -90,7 +90,7 @@
                     </a>
 
                     @if ($currentUser->hasAnyRole(['admin', 'writer']))
-                        <a class="nav-link {{ active('articles.*') }}" href="{{ route('articles.dashboard') }}">
+                        <a class="nav-link {{ active(['articles.*', 'categories.*']) }}" href="{{ route('articles.dashboard') }}">
                             <i class="fe mr-1 fe-book-open"></i> Nieuws
                         </a>
                     @endif
