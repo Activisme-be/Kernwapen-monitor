@@ -29,10 +29,10 @@ class CategoryController extends Controller
     /**
      * Admin dashboard page for the news articles.
      *
-     * @param  Tags $categories The database model instance from the categories
+     * @param  Tag $categories The database model instance from the categories
      * @return Renderable
      */
-    public function dashboard(Tags $categories): Renderable
+    public function dashboard(Tag $categories): Renderable
     {
         return view('categories.dashboard', ['categories' => $categories->simplePaginate()]);
     }
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
        return view('categories.create');
     }
-
+  
     /**
      * Method for storing the news category in the database storage.
      *
