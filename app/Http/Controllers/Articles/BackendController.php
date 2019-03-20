@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Articles;
 use App\Models\Article;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Articles\PostValidator;
 use App\Http\Controllers\Controller;
 
 /**
@@ -42,6 +45,21 @@ class BackendController extends Controller
      */
     public function create(): Renderable
     {
-        return view('articles.create');
+        $statusses = [0 => 'Klad versie', 1 => 'Publiceer bericht'];
+        return view('articles.create', compact('statusses'));
+    }
+
+    /**
+     * Method for storing a new article in the application. 
+     * 
+     * @todo implement route (view, backend)
+     * 
+     * @param 
+     * @param 
+     * @return 
+     */
+    public function store(PostValidator $input, Article $article): RedirectResponse 
+    {
+        dd($input->all()); //! Only for debugging
     }
 }

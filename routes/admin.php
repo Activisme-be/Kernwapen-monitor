@@ -51,10 +51,14 @@ Route::get('/gebruikers/{filter?}', [IndexController::class, 'index'])->name('us
 
 // Category routes
 Route::get('/categorieen', [CategoryController::class, 'dashboard'])->name('categories.dashboard');
+Route::get('/categorieen/nieuw', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categorieen/nieuw', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categorieen/verwijder/{tag}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 // Article routes
 Route::get('/artikelen', [BackendController::class, 'index'])->name('articles.dashboard');
 Route::get('/artikelen/nieuw', [BackendController::class, 'create'])->name('articles.create');
+Route::post('/artikelen/nieuw', [BackendController::class, 'store'])->name('articles.store');
 
 // City Note Routes 
 Route::get('/notities/zoek/{city}/{term?}', [NoteController::class, 'search'])->name('monitor.notes.search');
