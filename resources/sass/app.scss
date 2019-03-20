@@ -1,19 +1,163 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css');
 
 // Variables
 @import 'settings/variables';
 @import 'modules/icons';
+@import 'modules/icons-nucleo';
 @import 'modules/page-header';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/functions';
 @import "~primer-blankslate/index.scss";
 
 .blankslate {
   background-color: #fff;
   border-radius: 0.25rem;
+}
+// Icons
+
+$icon-size: 3rem !default;
+$icon-size-xl: 5rem !default;
+$icon-size-lg: 4rem !default;
+$icon-size-sm: 2rem !default;
+
+.icon {
+  width: $icon-size;
+  height: $icon-size;
+
+  i, svg {
+    font-size: $icon-size - .75;
+  }
+}
+
+.icon + .icon-text {
+  padding-left: 1rem;
+  width: calc(100% - #{$icon-size} - 1);
+}
+
+.icon-xl {
+  width: $icon-size-xl;
+  height: $icon-size-xl;
+
+  i, svg {
+    font-size: $icon-size-xl - .75;
+  }
+}
+
+.icon-xl + .icon-text {
+  width: calc(100% - #{$icon-size-xl} - 1);
+}
+
+.icon-lg {
+  width: $icon-size-lg;
+  height: $icon-size-lg;
+
+  i, svg {
+    font-size: $icon-size-lg - .75;
+  }
+}
+
+.icon-lg + .icon-text {
+  width: calc(100% - #{$icon-size-lg} - 1);
+}
+
+.icon-sm {
+  width: $icon-size-sm;
+  height: $icon-size-sm;
+
+  i, svg {
+    font-size: $icon-size-sm - .75;
+  }
+}
+
+.icon-sm + .icon-text {
+  width: calc(100% - #{$icon-size-sm} - 1);
+}
+
+
+// Icons included in shapes
+.icon-shape {
+  padding: 12px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+
+  i, svg {
+    font-size: 1.25rem;
+  }
+
+  &.icon-lg {
+    i, svg {
+      font-size: 1.625rem;
+    }
+  }
+
+  &.icon-sm {
+    i, svg {
+      font-size: .875rem;
+    }
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+@mixin icon-shape-variant($color) {
+  color: saturate(darken($color, 10%), 10);
+  background-color: transparentize(lighten($color, 10%), .5);
+}
+
+@each $color, $value in $theme-colors {
+  .icon-shape-#{$color} {
+    @include icon-shape-variant(theme-color($color));
+  }
+}
+
+// Buttons partial
+.btn-outline-facebook {
+  @include button-outline-variant(#3b5998);
+}
+
+.btn-facebook {
+  @include button-variant(#3b5998, #3b5998);
+}
+
+.btn-twitter {
+  @include button-variant(#1da1f2, #1da1f2);
+}
+
+.btn-outline-twitter {
+  @include button-outline-variant(#1da1f2);
+}
+
+// Stamp partial 
+.stamp {
+  color: #fff;
+  background: #868e96;
+  display: inline-block;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 .25rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.stamp-md {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
 }
 
 .dropdown-item.active,
