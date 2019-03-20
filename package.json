@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.9"
     },
     "dependencies": {
-        "primer-blankslate": "^2.0.0"
+        "codemirror": "^5.45.0",
+        "primer-blankslate": "^2.0.0",
+        "summernote": "^0.8.11"
     }
 }

@@ -31,3 +31,32 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * Implementation of summernote WYSIWYG
+ */
+require('../../node_modules/summernote/dist/summernote-bs4');
+require('../../node_modules/summernote/lang/summernote-nl-NL');
+
+$(document).ready(function() {
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350, function() {
+        $(this).alert('close');
+    });
+
+    $('#contentArea').summernote({
+        placeholder: 'Bericht',
+        shortcuts: false,
+        lang: "nl-NL",
+        disableResizeEditor: true,
+        height: 150,             
+        minHeight: null,            
+        maxHeight: null,             
+        focus: false,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+          ]
+    });
+});
