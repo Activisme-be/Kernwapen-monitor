@@ -21,7 +21,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'forbid-banned-user'])->only(['index']);
-        $this->middleware(['guest'])->only(['welcome']);
     }
 
     /**
@@ -31,7 +30,7 @@ class HomeController extends Controller
      */
     public function welcome(): Renderable
     {
-        return view('auth.login');
+        return view('welcome');
     }
 
     /**

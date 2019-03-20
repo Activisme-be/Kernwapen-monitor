@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use App\Repositories\MonitorRepository;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class City 
  * 
  * @package App\Models
  */
-class City extends Model
+class City extends MonitorRepository
 {
     /**
      * Mass-assign fields for the database table. 
