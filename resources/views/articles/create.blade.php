@@ -21,10 +21,29 @@
             </div> {{-- /// END sidebar --}}
 
             <div class="col-9"> {{-- content --}}
-                <form class="card card-body" method="POST" action>
+                <form class="card card-body" method="POST" action="{{ route('articles.store') }}">
+                    <h6 class="border-bottom border-gray pb-1 mb-3">Nieuwsbericht toevoegen</h6>
+
                     @include ('flash::message') {{-- Flash session view partial --}}
+                    @csrf {{-- Form filed protection --}}
 
                     <div class="form-row">
+                        <div class="form-group col-8">
+                            <label for="inputTitel">Titel <span class="text-danger">*</span></label>
+                            <input id="inputTitel" type="text" class="form-control @error('titel', 'is-invalid')" placeholder="Titel van het artikel">
+                            @error('titel')
+                        </div>
+                        
+                        <div class="form-group col-4">
+                            <label for="inputStatus">Status <span class="text-danger">*</span></label>
+                            
+                            <select class="custom-select @error('status', 'is-invalid')" @input('status')>
+                                @options($statusses, 'status')
+                            </select>
+
+                            @error('status') {{-- Validation error view partial --}}
+                        </div>
+
                         <div class="form-group col-12">
                             <label for="contentArea">Bericht <span class="text-danger">*</span></label>
                             <textarea id="contentArea" @input('content') class="form-control @error('content', 'is-invalid') col-md-12">{{ old('content') }}</textarea>

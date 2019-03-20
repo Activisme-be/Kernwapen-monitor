@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Articles;
 use App\Models\Article;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Articles\PostValidator;
 
 /**
  * Class BackendController
@@ -42,6 +44,15 @@ class BackendController extends Controller
      */
     public function create(): Renderable
     {
-        return view('articles.create');
+        $statusses = [0 => 'Klad versie', 1 => 'Publiceer bericht'];
+        return view('articles.create', compact('statusses'));
+    }
+
+    /**
+     * @todo implement route (view, backend)
+     */
+    public function store(PostValidator $input, Article $article): RedirectResponse 
+    {
+        dd($input->all()); //! Only for debugging
     }
 }

@@ -58,6 +58,7 @@ Route::get('/categorieen/verwijder/{tag}', [CategoryController::class, 'destroy'
 // Article routes
 Route::get('/artikelen', [BackendController::class, 'index'])->name('articles.dashboard');
 Route::get('/artikelen/nieuw', [BackendController::class, 'create'])->name('articles.create');
+Route::post('/artikelen/nieuw', [BackendController::class, 'store'])->name('articles.store');
 
 // City Note Routes 
 Route::get('/notities/zoek/{city}/{term?}', [NoteController::class, 'search'])->name('monitor.notes.search');
