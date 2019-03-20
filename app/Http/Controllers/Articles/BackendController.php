@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\PostValidator;
-use App\Http\Controllers\Controller;
 
 /**
  * Class BackendController

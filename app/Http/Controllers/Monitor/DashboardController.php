@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Monitor;
 
-use App\Models\Postal;
 use App\Models\City;
 use App\Models\Signature;
 use App\Models\Province;
