@@ -30,7 +30,7 @@
                     <div class="form-row">
                         <div class="form-group col-8">
                             <label for="inputTitel">Titel <span class="text-danger">*</span></label>
-                            <input id="inputTitel" type="text" class="form-control @error('titel', 'is-invalid')" placeholder="Titel van het artikel">
+                            <input id="inputTitel" type="text" class="form-control @error('titel', 'is-invalid')" @input('titel') placeholder="Titel van het artikel">
                             @error('titel')
                         </div>
                         

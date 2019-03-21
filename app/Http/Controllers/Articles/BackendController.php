@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Articles;
 
 use App\Models\Article;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\PostValidator;
@@ -51,12 +50,22 @@ class BackendController extends Controller
     /**
      * Method for storing a new article in the application. 
      * 
-     * @param 
-     * @param  
+     * @todo Complete validator
+     * @todo Create observer class.
+     * 
+     * @see \App\Observers\ArticleObserver::created()
+     * 
+     * @param  PostValidator    $input    The valiodation class entity that handles all the validation. 
+     * @param  Article          $article  The database model instance for the news articles.
      * @return RedirectResponse
      */
     public function store(PostValidator $input, Article $article): RedirectResponse 
     {
-        dd($input->all()); //! Only for debugging
+        if ($article = $article->create($input->all())) {
+            auth()->user()->logActivity($article, 'Nieuwsberichten', 'Heeft een nieuws bericht toegevoegd in de applicatie.');
+            flash('Het nieuwsbericht is toegevoegd in de applicatie.')->success();
+        }
+
+        return redirect()->route('articles.dashboard');
     }
 }
