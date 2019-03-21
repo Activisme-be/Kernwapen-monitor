@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\Repositories\ArticleRepository;
 use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * 
  * @package Spatie\Tags\HasTags;
  */
-class Article extends Model
+class Article extends ArticleRepository
 {
     use HasTags;
 

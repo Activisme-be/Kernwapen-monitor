@@ -52,6 +52,23 @@
                             </thead>
                             <tbody>
                                 @forelse ($articles as $article) {{-- Article loop --}}
+                                    <tr>
+                                        <td>{{ $article->author->name }}</td>
+                                        
+                                        <td> {{-- Status field --}}
+                                            @if ($article->isPublished())
+                                                <span class="badge badge-success">Gepubliceerd</span>
+                                            @else {{-- The article has a draft status --}}
+                                                <span class="badge badge-danger">Klad versie</span>
+                                            @endif
+                                        </td> {{-- /// End status field --}}
+
+                                        <td>{{ ucfirst($article->titel) }}</td>
+
+                                        <td> {{-- Function column --}} 
+                                            {{-- /// --}}
+                                        </td> {{-- /// End function column  --}}
+                                    </tr>
                                 @empty {{-- There are no articles found --}}
                                     <tr>
                                         <td colspan="4">
