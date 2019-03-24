@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Articles\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,7 @@ Auth::routes(['register' => false]);
 // Home routes
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// News routes 
+Route::get('/nieuws', [FrontendController::class, 'index'])->name('articles.index');
+Route::get('/nieuws/{article}', [FrontendController::class, 'show'])->name('article.show');

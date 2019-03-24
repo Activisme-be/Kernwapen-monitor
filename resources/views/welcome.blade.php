@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron rounded-0">
-        <h1><i class="ni ni-sound-wave text-danger mr-1"></i> {{ config('app.name') }} - Kernwapen monitor</h1>
+        <h1><i class="fe fe-activity text-danger mr-1"></i> {{ config('app.name') }} - Kernwapen monitor</h1>
         <p>Met dit platform willen we proberen om belgie de UN resolutie te laten tekenen dat kernwapens verband.</p>
 
         <hr class="my-3">

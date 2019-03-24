@@ -38,6 +38,7 @@
 
             <div class="col-9"> {{-- content --}}
                 <div class="card card-body">
+                    <h6 class="border-bottom border-gray pb-1 mb-3">Overzicht nieuwsberichten</h6>
                     @include ('flash::message') {{-- Flash session view partial --}}
 
                     <div class="table-responsive">
@@ -53,7 +54,13 @@
                             <tbody>
                                 @forelse ($articles as $article) {{-- Article loop --}}
                                     <tr>
-                                        <td>{{ $article->author->name }}</td>
+                                        <td>
+                                            @if ($article->hasNoAuthor())
+                                                Onbekende gebruiker 
+                                            @else 
+                                                {{ $article->author->name }}
+                                            @endif
+                                        </td>
                                         
                                         <td> {{-- Status field --}}
                                             @if ($article->isPublished())
@@ -66,7 +73,29 @@
                                         <td>{{ ucfirst($article->titel) }}</td>
 
                                         <td> {{-- Function column --}} 
-                                            {{-- /// --}}
+                                            <span class="float-right">
+                                                <a href="" class="text-secondary mr-2 text-decoration-none">
+                                                    <i class="fe fe-eye"></i>
+                                                </a>
+
+                                                <a href="" class="text-secondary mr-1 text-decoration-none">
+                                                    <i class="fe fe-edit"></i>
+                                                </a>
+
+                                                @if ($article->isPublished()) 
+                                                    <a href="{{ route('article.draft', $article) }}" class="text-info text-decoration-none">
+                                                        <i class="fe fe-rotate-ccw"></i>
+                                                    </a>
+                                                @elseif ($article->isDraft())
+                                                    <a href="{{ route('article.publish', $article) }}" class="text-success text-decoration-none">
+                                                        <i class="fe fe-check"></i>
+                                                    </a>
+                                                @endif
+
+                                                <a href="" class="text-danger ml-2 text-decoration-none">
+                                                    <i class="fe fe-trash-2"></i>
+                                                </a>
+                                            </span>
                                         </td> {{-- /// End function column  --}}
                                     </tr>
                                 @empty {{-- There are no articles found --}}

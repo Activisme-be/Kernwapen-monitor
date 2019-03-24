@@ -30,4 +30,14 @@ class ArticleRepository extends Model
     {
         return ! $this->isPublished();
     }
+
+    /**
+     * Check if the article has an author or not.
+     * 
+     * @return bool
+     */
+    public function hasNoAuthor(): bool 
+    {
+        return is_null($this->author) || is_null($this->author->name);
+    }
 }

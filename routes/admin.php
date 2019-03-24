@@ -58,6 +58,8 @@ Route::get('/categorieen/verwijder/{tag}', [CategoryController::class, 'destroy'
 // Article routes
 Route::get('/artikelen', [BackendController::class, 'index'])->name('articles.dashboard');
 Route::get('/artikelen/nieuw', [BackendController::class, 'create'])->name('articles.create');
+Route::get('/artikelen/publiceer/{article}', [BackendController::class, 'publish'])->name('article.publish');
+Route::get('/artikelen/draft/{article}', [BackendController::class, 'unpublish'])->name('article.draft');
 Route::post('/artikelen/nieuw', [BackendController::class, 'store'])->name('articles.store');
 
 // City Note Routes 

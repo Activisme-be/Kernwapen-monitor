@@ -50,9 +50,6 @@ class BackendController extends Controller
     /**
      * Method for storing a new article in the application. 
      * 
-     * @todo Complete validator
-     * @todo Create observer class.
-     * 
      * @see \App\Observers\ArticleObserver::created()
      * 
      * @param  PostValidator    $input    The valiodation class entity that handles all the validation. 
@@ -64,6 +61,40 @@ class BackendController extends Controller
         if ($article = $article->create($input->all())) {
             auth()->user()->logActivity($article, 'Nieuwsberichten', 'Heeft een nieuws bericht toegevoegd in de applicatie.');
             flash('Het nieuwsbericht is toegevoegd in de applicatie.')->success();
+        }
+
+        return redirect()->route('articles.dashboard');
+    }
+
+    /**
+     * Method to publish an article in the application. 
+     * 
+     * @todo Register route
+     * 
+     * @param  Article $article The database entity from the given database article.
+     * @return RedirectResponse
+     */
+    public function publish(Article $article): RedirectResponse 
+    {
+        if ($article->isDraft() && $article->update(['status' => true])) {
+            flash('Het nieuwsbericht is gepubliceerd.')->info();
+            auth()->user()->logActivity($article, 'Nieuwsberichten', 'Heeft een nieuwsbericht gepubliceerd.');
+        } 
+
+        return redirect()->route('articles.dashboard');
+    }
+
+    /**
+     * Method for registering news articles as draft.
+     * 
+     * @param  Article $article The database entity from the given database article.
+     * @return RedirectResponse
+     */
+    public function unpublish(Article $article): RedirectResponse 
+    {
+        if ($article->isPublished() && $article->update(['status' => false])) {
+            flash('Het nieuwsbericht is geregistreerd als een kladwerk.')->info();
+            auth()->user()->logActivity($article, 'Nieuwsberichten', 'Heeft een nieuwsbericht geregistreerd als klad.');
         }
 
         return redirect()->route('articles.dashboard');

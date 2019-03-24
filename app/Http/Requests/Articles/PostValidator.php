@@ -30,7 +30,8 @@ class PostValidator extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'titel'   => ['required', 'string', 'max:191'], 
+            'content' => ['required', 'string']
         ];
     }
 }

@@ -41,7 +41,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route('articles.index') }}" class="nav-link {{ active(['article.*', 'articles.index']) }}">
                                     Nieuws
                                 </a>
                             </li>

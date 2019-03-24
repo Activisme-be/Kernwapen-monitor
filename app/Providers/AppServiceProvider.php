@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Telescope\TelescopeServiceProvider;
 use App\Models\Tags;
 use App\Observers\TagsObserver;
+use App\Models\Article;
+use App\Observers\ArticleObserver;
 
 /**
  * Class AppServiceProvider 
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Eloquent Models observers
         Tags::observe(TagsObserver::class);
+        Article::observe(ArticleObserver::class);
     }
 
     /**

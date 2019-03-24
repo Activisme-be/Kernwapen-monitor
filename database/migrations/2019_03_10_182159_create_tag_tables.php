@@ -10,6 +10,7 @@ class CreateTagTables extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('views')->default(0);
             $table->unsignedInteger('author_id')->nullable();
             $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
             $table->json('name');
