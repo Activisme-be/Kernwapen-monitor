@@ -1,3 +1,5 @@
+[![TODO board](https://imdone.io/api/1.0/projects/5cf9ed3045d9af687bdcc5b6/badge)](https://imdone.io/app#/board/Activisme-be/Kernwapen-monitor)
+
 # Activisme-BE - Spoon 
 
 Spoon is een laravel template voor onze projecten waar alleen RVB leden op moeten kunnen inloggen. 

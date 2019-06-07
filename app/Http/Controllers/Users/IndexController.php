@@ -92,7 +92,10 @@ class IndexController extends Controller
 
         if ($user = $user->create($input->all())) {
             auth()->user()->logActivity($user, 'Gebruikers', "Heeft een login aangemaakt voor {$user->name}");
-            $user->notify((new LoginCreated($input->all()))->delay(now()->addMinute())); // TODO: Implement notification class
+            $user->notify((new LoginCreated($input->all()))->delay(now()->addMinute())); // TODO: Implement notification class id:0
+// - <https://github.com/Activisme-be/Kernwapen-monitor/issues/14>
+// Tim Joosten
+// Tjoosten@users.noreply.github.com
         }
 
         return redirect()->route('users.show', $user);
